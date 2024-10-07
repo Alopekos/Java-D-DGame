@@ -33,9 +33,9 @@ public class Menu {
                     clearScreen();
                     if (perso_1.getClasse().equals("mage") || perso_1.getClasse().equals("guerrier")) {
                         System.out
-                                .println(perso_1.toString());
+                                .println(perso_1);
                     } else {
-                        System.out.println("Veuillez choisir une classe valide!");
+                        System.out.println("❌ Veuillez modifier votre personnage pour une classe valide! ❌");
                     }
                 }
                 case "2" -> {
@@ -55,10 +55,14 @@ public class Menu {
                 }
                 case "3" -> {
                     clearScreen();
-                    printDices();
+                    if (perso_1.getClasse().equals("mage") || perso_1.getClasse().equals("guerrier")) {
+                        printDices();
 
-                    isMenuOver = true;
-                    throwDice(ongoingGame.getCharacter(), scanner);
+                        isMenuOver = true;
+                        throwDice(ongoingGame.getCharacter(), scanner);
+                    } else {
+                        System.out.println("❌ Veuillez modifier votre personnage pour une classe valide! ❌");
+                    }
                 }
                 case "4" -> {
                     clearScreen();
@@ -131,7 +135,22 @@ public class Menu {
                                         + tileNumber + "/64. \u001b[0m \n");
                         tileNumber += (int) ((Math.random() * 5) + 1);
                     } else if (tileNumber >= 64) {
-                        System.out.println("\u001b[33m VOUS AVEZ GAGNE !!! \u001b[0m");
+                        System.out.println("\u001b[33m \t\t***VOUS AVEZ GAGNE*** \u001b[0m \n\n");
+                        System.out.println("""
+                                \u001b[31m                    ⣀⣀⡠⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                \u001b[32m        ⠀⢸⢉⡗⠀⠀⠀⠀⠀⠀⠀⠀⠈⡆⠀⠈⡱⠖⠀⠀⠀⠀⠀⠀⠀⠀⣄⣠⠆⠀
+                                \u001b[33m        ⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠰⠓⠒⢴⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⢨⠀⣰⠃
+                                \u001b[34m        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⢹⡀⠀⠀⠀⠈⠀
+                                \u001b[35m        ⠀⠀⠀⠀⢠⣀⣶⠀⠀⠀⠀⠀⠀⠀⠀⢤⢀⣀⣀⣀⡠⠋⠀⠀⢇⠀⠀⠀⠀⠀
+                                \u001b[36m        ⠀⠀⠀⠀⠀⡇⣄⠊⠁⠀⠀⠀⠀⠀⢀⡨⢦⠀⠀⠀⠀⠀⠀⠀⠘⠒⠤⣀⡀⠀
+                                \u001b[37m        ⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⡀⠔⠊⠁⢀⡀⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠼⠋
+                                \u001b[31m        ⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠈⡀⠄⠂⠉⢀⡀⢰⠁⠀⠀⠀⠀⠀⠀⡴⠊⠁⠀⠀
+                                \u001b[32m        ⠀⠀⠀⠀⠀⠀⡠⢊⠠⠒⣁⠤⠐⣀⡁⠤⢤⠃⢀⣀⡠⢄⡀⠀⠀⡇⠀⠀⠀⠀
+                                \u001b[33m        ⠀⠀⠀⠀⡠⡪⢐⡡⢐⠩⠐⠊⠁⠀⠀⠀⠚⠉⠉⠀⠀⠀⠙⠢⣀⡇⠀⠀⠀⠀
+                                \u001b[34m        ⠀⠀⢠⡪⡪⡲⠕⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠈⠃⠀⠀⠀
+                                \u001b[35m        ⠀⣰⣿⠞⠉⠀⠀⠀⠀⠀⡄⡰⡆⠀⠀⠀⠀⠀⠀⢐⣌⡶⠀⠀⠀⠀⠀⠀⠀⠀
+                                \u001b[36m        ⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⣸⠤⡐⠁⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀
+                                                                       """);
                         System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
                         String restartOrClose = scannerGame.next();
                         clearScreen();
@@ -148,7 +167,7 @@ public class Menu {
                     clearScreen();
                     if (personnage.getClasse().equals("mage") || personnage.getClasse().equals("guerrier")) {
                         System.out
-                                .println(personnage.toString());
+                                .println(personnage);
                     } else {
                         System.out.println("Veuillez choisir une classe valide!");
                     }

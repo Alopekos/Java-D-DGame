@@ -29,7 +29,7 @@ public class Personnage {
                 this.forceDAttaque = 10;
             }
             default -> {
-                System.out.println("Cette classe n'est pas disponible : " + classePersonnage);
+                System.out.println("\n❌ Cette classe n'est pas disponible : " + classePersonnage + " ❌");
             }
         }
     }
