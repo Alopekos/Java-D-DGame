@@ -8,8 +8,7 @@ public class Personnage {
 
     public Personnage() {
         this("Unknown", "Unknown");
-        // this.classe = "mage";
-        // this.name = "Toto";
+
     }
 
     public Personnage(String name) {
@@ -17,7 +16,6 @@ public class Personnage {
     }
 
     public Personnage(String classePersonnage, String name) {
-        // EquipementOffensif offense = new EquipementOffensif();
         this.classe = classePersonnage;
         this.name = name;
 
@@ -49,10 +47,12 @@ public class Personnage {
         String message = "\n \u001B[33m*** Caracteristiques ***\u001B[0m \nNom: " + this.name
                 + " / Classe: "
                 + this.classe
-                + "\n💖: "
+                + "\nPdv: "
                 + this.niveauDeVie + "\u001B[34m (+" + this.bouclier.getDefense() + ") \u001B[0m"
-                + "\n🗡️: " + this.forceDAttaque + "\u001B[34m (+" + this.arme.getAttack()
-                + ") \u001B[0m \n\n \u001B[33m*** Equipement ***\u001B[0m "
+                + "\nAtk: " + this.forceDAttaque + "\u001B[34m (+" + this.arme.getAttack()
+                + ") \u001B[37m \n\nTotal: \n💖 " + (this.niveauDeVie + this.bouclier.getDefense()) + "\n🗡️  "
+                + (this.forceDAttaque + this.arme.getAttack())
+                + " \n\n \u001B[33m*** Equipement ***\u001B[0m "
                 + this.arme.toString()
                 + this.bouclier.toString();
         return message;
