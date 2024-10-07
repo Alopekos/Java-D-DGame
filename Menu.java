@@ -31,7 +31,7 @@ public class Menu {
             switch (showPersonnage) {
                 case "1" -> {
                     clearScreen();
-                    if (perso_1.classe.equals("mage") || perso_1.classe.equals("guerrier")) {
+                    if (perso_1.getClasse().equals("mage") || perso_1.getClasse().equals("guerrier")) {
                         System.out
                                 .println(perso_1.toString());
                     } else {
@@ -55,7 +55,8 @@ public class Menu {
                 }
                 case "3" -> {
                     clearScreen();
-                    System.out.println("\n \u001b[31m Veuillez lancer les dés pour commencer.\u001B[0m\n");
+                    printDices();
+
                     isMenuOver = true;
                     throwDice(ongoingGame.getCharacter(), scanner);
                 }
@@ -98,12 +99,27 @@ public class Menu {
         System.out.flush();
     }
 
+    public void printDices() {
+        System.out.println("""
+
+                \t  .-------.    ______
+                \t /   o   /|   /\\     \\
+                \t/_______/o|  /o \\  o  \\
+                \t| o     | | /   o\\_____\\
+                \t|   o   |o/ \\o   /o    /
+                \t|     o |/   \\ o/  o  /
+                \t'-------'     \\/____o/
+                """);
+        System.out.println("\n  Veuillez lancer les dés pour commencer.");
+    }
+
     public boolean throwDice(Personnage personnage, Scanner scannerGame) {
         int tileNumber = 1;
-        boolean isGameOver = false;
 
-        while (!isGameOver) {
-            System.out.println("\n1-Lancer les dès \n2-Statistiques du personnage");
+        while (true) {
+
+            System.out
+                    .println("\n\u001B[35m1-Lancer les dès \n2-Statistiques du personnage\n3-Quitter le jeu\u001b[0m");
             String showPersonnage = scannerGame.next();
 
             switch (showPersonnage) {
@@ -111,18 +127,17 @@ public class Menu {
                     clearScreen();
                     if (tileNumber < 64) {
                         System.out.println(
-                                "\u001b[33m ***Vous lancez les dés*** \u001b[0m \n\n \u001b[31m Vous vous trouvez sur la case n°"
+                                "\u001b[33m ***Vous lancez les dés*** \u001b[0m \n\n Vous vous trouvez sur la case n°"
                                         + tileNumber + "/64. \u001b[0m \n");
                         tileNumber += (int) ((Math.random() * 5) + 1);
                     } else if (tileNumber >= 64) {
                         System.out.println("\u001b[33m VOUS AVEZ GAGNE !!! \u001b[0m");
-                        System.out.println("\n1-Rejouer \n2-Quitter le jeu");
+                        System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
                         String restartOrClose = scannerGame.next();
                         clearScreen();
                         switch (restartOrClose) {
                             case "1" -> throwDice(personnage, scannerGame);
                             case "2" -> {
-                                isGameOver = true;
                                 clearScreen();
                                 System.exit(0);
                             }
@@ -131,17 +146,19 @@ public class Menu {
                 }
                 case "2" -> {
                     clearScreen();
-                    if (personnage.classe.equals("mage") || personnage.classe.equals("guerrier")) {
+                    if (personnage.getClasse().equals("mage") || personnage.getClasse().equals("guerrier")) {
                         System.out
                                 .println(personnage.toString());
                     } else {
                         System.out.println("Veuillez choisir une classe valide!");
                     }
                 }
+                case "3" -> {
+                    clearScreen();
+                    System.exit(0);
+                }
             }
 
         }
-
-        return false;
     }
 }

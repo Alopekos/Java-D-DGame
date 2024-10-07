@@ -1,10 +1,10 @@
 public class Personnage {
-    public String name;
-    public String classe;
-    public int niveauDeVie;
-    public int forceDAttaque;
-    public EquipementOffensif arme;
-    public EquipementDefensif bouclier;
+    private String name;
+    private String classe;
+    private int niveauDeVie;
+    private int forceDAttaque;
+    private EquipementOffensif arme;
+    private EquipementDefensif bouclier;
 
     public Personnage() {
         this("Unknown", "Unknown");
@@ -32,7 +32,14 @@ public class Personnage {
                 System.out.println("Cette classe n'est pas disponible : " + classePersonnage);
             }
         }
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getClasse() {
+        return classe;
     }
 
     public void equipWeapon(EquipementOffensif weapon) {

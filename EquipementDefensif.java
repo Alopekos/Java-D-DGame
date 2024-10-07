@@ -10,7 +10,7 @@ public class EquipementDefensif {
 
     public EquipementDefensif(String name, Personnage classe) {
         this.name = name;
-        switch (classe.classe) {
+        switch (classe.getClasse()) {
             case "mage":
                 this.type = "Philtre";
                 this.defense = 10;
