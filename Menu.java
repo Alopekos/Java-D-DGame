@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Personnages.Personnage;
+
 public class Menu {
     private final Scanner scanner;
 

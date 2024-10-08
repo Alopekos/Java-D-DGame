@@ -1,3 +1,10 @@
+import Personnages.*;
+import EquipementDefense.Bouclier;
+import EquipementDefense.EquipementDefensif;
+import EquipementDefense.Philtre;
+import EquipementOffense.Arme;
+import EquipementOffense.EquipementOffensif;
+import EquipementOffense.Sort;
 
 public class Game {
     private Personnage personnage;
