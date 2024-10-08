@@ -29,7 +29,8 @@ public class Personnage {
                 this.forceDAttaque = 10;
             }
             default -> {
-                System.out.println("\n❌ Cette classe n'est pas disponible : " + classePersonnage + " ❌");
+                // System.out.println("\n❌ Cette classe n'est pas disponible : " +
+                // classePersonnage + " ❌");
             }
         }
     }
@@ -48,6 +49,14 @@ public class Personnage {
 
     public void equipDefensive(EquipementDefensif defensive) {
         this.bouclier = defensive;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setClass(String classe) {
+        this.classe = classe;
     }
 
     public String toString() {
