@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public Menu() {
         this.scanner = new Scanner(System.in);
@@ -35,17 +35,15 @@ public class Menu {
                 """);
     }
 
-    public String choseClassType(Personnage personnage) {
+    public String choseClassType() {
         System.out.println("\u001B[35m \nChoisir une classe (mage/guerrier) : \u001B[0m");
         String classe = scanner.next();
-        personnage.setClass(classe);
         return classe;
     }
 
-    public String choseName(Personnage personnage) {
+    public String choseName() {
         System.out.println("\n\u001B[35mVotre nom : \u001B[0m");
         String name = scanner.next();
-        personnage.setName(name);
         return name;
     }
 

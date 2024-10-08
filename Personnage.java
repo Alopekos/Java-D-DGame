@@ -1,4 +1,5 @@
-public class Personnage {
+
+public abstract class Personnage {
     private String name;
     private String classe;
     private int niveauDeVie;
@@ -6,34 +7,32 @@ public class Personnage {
     private EquipementOffensif arme;
     private EquipementDefensif bouclier;
 
-    public Personnage() {
-        this("Unknown", "Unknown");
+    // public Personnage() {
+    // this("Unknown", "Unknown");
 
-    }
+    // }
 
-    public Personnage(String name) {
-        this("Unknown", name);
-    }
+    // public Personnage(String name) {
+    // this("Unknown", name);
+    // }
 
-    public Personnage(String classePersonnage, String name) {
-        this.classe = classePersonnage;
-        this.name = name;
+    // public Personnage(String classePersonnage, String name) {
+    // this.classe = classePersonnage;
+    // this.name = name;
 
-        switch (classePersonnage) {
-            case "mage" -> {
-                this.niveauDeVie = 6;
-                this.forceDAttaque = 15;
-            }
-            case "guerrier" -> {
-                this.niveauDeVie = 10;
-                this.forceDAttaque = 10;
-            }
-            default -> {
-                // System.out.println("\n❌ Cette classe n'est pas disponible : " +
-                // classePersonnage + " ❌");
-            }
-        }
-    }
+    // switch (classePersonnage) {
+    // case "mage" -> {
+    // Personnage personnage = new Guerrier(name);
+    // }
+    // case "guerrier" -> {
+    // Personnage personnage = new Mage(name);
+    // }
+    // default -> {
+    // // System.out.println("\n❌ Cette classe n'est pas disponible : " +
+    // // classePersonnage + " ❌");
+    // }
+    // }
+    // }
 
     public String getName() {
         return name;
@@ -59,6 +58,15 @@ public class Personnage {
         this.classe = classe;
     }
 
+    public void setNiveauDeVie(int lifePoints) {
+        this.niveauDeVie = lifePoints;
+    }
+
+    public void setForceDAttaque(int atk) {
+        this.forceDAttaque = atk;
+    }
+
+    @Override
     public String toString() {
         String message = "\n \u001B[33m*** Caracteristiques ***\u001B[0m \nNom: " + this.name
                 + " / Classe: "

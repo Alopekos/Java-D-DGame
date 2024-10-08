@@ -3,17 +3,8 @@ public class Game {
     private Personnage personnage;
     public Menu menu;
 
-    public Game(Menu menu, Personnage personnage) {
+    public Game(Menu menu) {
         this.menu = menu;
-        this.personnage = personnage;
-    }
-
-    public void setCharacter(Personnage personnage) {
-        this.personnage = personnage;
-    }
-
-    public Personnage getCharacter() {
-        return personnage;
     }
 
     public void createMenu() {
@@ -21,6 +12,7 @@ public class Game {
         String menu_choice = menu.choseMenu();
 
         switch (menu_choice) {
+
             case "1" -> this.startGame();
             case "2" -> {
             }
@@ -45,7 +37,7 @@ public class Game {
             switch (main_menu_choice) {
                 case "1" -> {
                     menu.clearScreen();
-                    if (checkClassCompatibility()) {
+                    if (checkClassCompatibility(personnage.getClasse())) {
                         menu.printPersonnage(personnage);
                     } else {
                         menu.printInvalidClass();
@@ -56,7 +48,7 @@ public class Game {
                 }
                 case "3" -> {
                     menu.clearScreen();
-                    if (checkClassCompatibility()) {
+                    if (checkClassCompatibility(personnage.getClasse())) {
                         menu.printDices();
 
                         isMenuOver = true;
@@ -96,7 +88,11 @@ public class Game {
                         String restartOrClose = menu.win_menu();
 
                         switch (restartOrClose) {
-                            case "1" -> throwDice(this.personnage);
+                            case "1" -> {
+                                menu.clearScreen();
+                                menu.printDices();
+                                throwDice(this.personnage);
+                            }
                             case "2" -> {
                                 menu.clearScreen();
                                 System.exit(0);
@@ -107,7 +103,7 @@ public class Game {
                 case "2" -> {
                     menu.clearScreen();
 
-                    if (checkClassCompatibility()) {
+                    if (checkClassCompatibility(personnage.getClasse())) {
                         menu.printPersonnage(personnage);
                     } else {
                         menu.printInvalidClass();
@@ -123,29 +119,33 @@ public class Game {
 
     }
 
-    public boolean checkClassCompatibility() {
-        return (this.personnage.getClasse().equals("mage") || this.personnage.getClasse().equals("guerrier"));
+    public boolean checkClassCompatibility(String classe) {
+        return (classe.equals("mage") || classe.equals("guerrier"));
     }
 
     public Personnage choseCharacter() {
-        this.personnage.setClass("unknown");
         String classe = "";
 
-        while (!checkClassCompatibility()) {
+        while (!checkClassCompatibility(classe)) {
             menu.clearScreen();
-            classe = menu.choseClassType(personnage);
+            classe = menu.choseClassType();
         }
 
-        String name = menu.choseName(personnage);
-
-        this.personnage = new Personnage(classe, name);
+        String name = menu.choseName();
+        switch (classe) {
+            case "mage" -> personnage = new Mage(name);
+            case "guerrier" -> personnage = new Guerrier(name);
+            default -> {
+            }
+        }
 
         EquipementOffensif weapon = new EquipementOffensif("Lame de Doran", this.personnage);
         EquipementDefensif defensive = new EquipementDefensif("Bouclier Dentelé", this.personnage);
 
-        this.personnage.equipWeapon(weapon);
-        this.personnage.equipDefensive(defensive);
+        personnage.equipWeapon(weapon);
+        personnage.equipDefensive(defensive);
 
-        return this.personnage;
+        return personnage;
     }
+
 }

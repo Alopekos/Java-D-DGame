@@ -36,6 +36,7 @@ public class EquipementOffensif {
         return forceDAttaque;
     }
 
+    @Override
     public String toString() {
         String message = "\nNom: " + this.name
                 + " / Type: "
