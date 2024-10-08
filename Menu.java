@@ -78,6 +78,63 @@ public class Menu {
         System.out.println("\n  Veuillez lancer les dés pour commencer.");
     }
 
+    public void printSingleDice(int choice) {
+        String msg = "";
+        switch (choice) {
+            case 1 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬜️⬛️⬜️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            case 2 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬜⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬜️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            case 3 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬜⬜️
+                     \t\t  ⬜️⬜️⬛️⬜️⬜️
+                     \t\t  ⬜️⬜️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            case 4 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            case 5 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬛️⬜️⬜️
+                     \t\t  ⬜️⬛️⬜️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            case 6 -> msg = """
+                     \n
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                     \t\t  ⬜️⬛️⬛️⬛️⬜️
+                     \t\t  ⬜️⬛️⬛️⬛️⬜️
+                     \t\t  ⬜️⬛️⬛️⬛️⬜️
+                     \t\t  ⬜️⬜️⬜️⬜️⬜️
+                    """;
+            default -> {
+            }
+        }
+        System.out.println(msg);
+    }
+
     public String dice_menu() {
         System.out.println("\n\u001B[35m1-Lancer les dès \n2-Statistiques du personnage\n3-Quitter le jeu\u001b[0m");
         String showPersonnage = scanner.next();

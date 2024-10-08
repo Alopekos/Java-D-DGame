@@ -5,6 +5,7 @@ import EquipementDefense.Philtre;
 import EquipementOffense.Arme;
 import EquipementOffense.EquipementOffensif;
 import EquipementOffense.Sort;
+import CustomException.PersonnageHorsPlateauException;
 
 public class Game {
     private Personnage personnage;
@@ -82,31 +83,18 @@ public class Game {
         menu.showPlayerTile(tileNumber);
         while (true) {
             String showPersonnage = menu.dice_menu();
-            int dice_roll = (int) ((Math.random() * 5) + 1);
+            int dice_roll = (int) ((Math.random() * 6) + 1);
 
             switch (showPersonnage) {
                 case "1" -> {
-                    menu.clearScreen();
-                    if (tileNumber + dice_roll < 64) {
-                        tileNumber += dice_roll;
-
-                        menu.showDiceThrow();
-                        menu.showPlayerTile(tileNumber);
-                    } else if (tileNumber + dice_roll >= 64) {
-                        tileNumber += dice_roll;
-                        String restartOrClose = menu.win_menu();
-
-                        switch (restartOrClose) {
-                            case "1" -> {
-                                menu.clearScreen();
-                                menu.printDices();
-                                throwDice(this.personnage);
-                            }
-                            case "2" -> {
-                                menu.clearScreen();
-                                System.exit(0);
-                            }
+                    try {
+                        if (tileNumber + dice_roll > 64) {
+                            throw new PersonnageHorsPlateauException("Erreur: Vous êtes en dehors du plateau.");
                         }
+                        tileNumber = dice_game(tileNumber, dice_roll);
+                    } catch (PersonnageHorsPlateauException e) {
+                        menu.clearScreen();
+                        System.err.println(e.getMessage());
                     }
                 }
                 case "2" -> {
@@ -130,6 +118,34 @@ public class Game {
 
     public boolean checkClassCompatibility(String classe) {
         return (classe.equals("mage") || classe.equals("guerrier"));
+    }
+
+    public int dice_game(int tileNumber, int dice_roll) {
+
+        menu.clearScreen();
+        if (tileNumber + dice_roll < 64) {
+            tileNumber += dice_roll;
+
+            menu.showDiceThrow();
+            menu.printSingleDice(dice_roll);
+            menu.showPlayerTile(tileNumber);
+        } else if (tileNumber + dice_roll == 64) {
+            tileNumber += dice_roll;
+            String restartOrClose = menu.win_menu();
+
+            switch (restartOrClose) {
+                case "1" -> {
+                    menu.clearScreen();
+                    menu.printDices();
+                    throwDice(this.personnage);
+                }
+                case "2" -> {
+                    menu.clearScreen();
+                    System.exit(0);
+                }
+            }
+        }
+        return tileNumber;
     }
 
     public Personnage choseCharacter() {
