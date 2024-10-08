@@ -1,6 +1,8 @@
 
 public class Game {
     private Personnage personnage;
+    private EquipementOffensif weapon;
+    private EquipementDefensif defensive;
     public Menu menu;
 
     public Game(Menu menu) {
@@ -133,17 +135,23 @@ public class Game {
 
         String name = menu.choseName();
         switch (classe) {
-            case "mage" -> personnage = new Mage(name);
-            case "guerrier" -> personnage = new Guerrier(name);
+            case "mage" -> {
+                personnage = new Mage(name);
+                weapon = new Sort("Eclair");
+                defensive = new Philtre("Potion d'armure");
+                personnage.equipWeapon(weapon);
+                personnage.equipDefensive(defensive);
+            }
+            case "guerrier" -> {
+                personnage = new Guerrier(name);
+                weapon = new Arme("Epée de fou");
+                defensive = new Bouclier("Bouclier de furieux");
+                personnage.equipWeapon(weapon);
+                personnage.equipDefensive(defensive);
+            }
             default -> {
             }
         }
-
-        EquipementOffensif weapon = new EquipementOffensif("Lame de Doran", this.personnage);
-        EquipementDefensif defensive = new EquipementDefensif("Bouclier Dentelé", this.personnage);
-
-        personnage.equipWeapon(weapon);
-        personnage.equipDefensive(defensive);
 
         return personnage;
     }

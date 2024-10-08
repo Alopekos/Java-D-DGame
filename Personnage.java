@@ -7,47 +7,12 @@ public abstract class Personnage {
     private EquipementOffensif arme;
     private EquipementDefensif bouclier;
 
-    // public Personnage() {
-    // this("Unknown", "Unknown");
-
-    // }
-
-    // public Personnage(String name) {
-    // this("Unknown", name);
-    // }
-
-    // public Personnage(String classePersonnage, String name) {
-    // this.classe = classePersonnage;
-    // this.name = name;
-
-    // switch (classePersonnage) {
-    // case "mage" -> {
-    // Personnage personnage = new Guerrier(name);
-    // }
-    // case "guerrier" -> {
-    // Personnage personnage = new Mage(name);
-    // }
-    // default -> {
-    // // System.out.println("\n❌ Cette classe n'est pas disponible : " +
-    // // classePersonnage + " ❌");
-    // }
-    // }
-    // }
-
     public String getName() {
         return name;
     }
 
     public String getClasse() {
         return classe;
-    }
-
-    public void equipWeapon(EquipementOffensif weapon) {
-        this.arme = weapon;
-    }
-
-    public void equipDefensive(EquipementDefensif defensive) {
-        this.bouclier = defensive;
     }
 
     public void setName(String name) {
@@ -64,6 +29,14 @@ public abstract class Personnage {
 
     public void setForceDAttaque(int atk) {
         this.forceDAttaque = atk;
+    }
+
+    public void equipWeapon(EquipementOffensif weapon) {
+        this.arme = weapon;
+    }
+
+    public void equipDefensive(EquipementDefensif defensive) {
+        this.bouclier = defensive;
     }
 
     @Override

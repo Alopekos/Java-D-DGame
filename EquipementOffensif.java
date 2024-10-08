@@ -1,4 +1,4 @@
-public class EquipementOffensif {
+public abstract class EquipementOffensif {
     private String name;
     private String type;
     private int forceDAttaque;
@@ -6,22 +6,6 @@ public class EquipementOffensif {
     public EquipementOffensif() {
         this.name = "unknown";
         this.type = "unknown";
-    }
-
-    public EquipementOffensif(String name, Personnage classe) {
-        this.name = name;
-        switch (classe.getClasse()) {
-            case "mage":
-                this.type = "Sort";
-                this.forceDAttaque = 10;
-                break;
-            case "guerrier":
-                this.type = "Arme";
-                this.forceDAttaque = 15;
-            default:
-                this.name = name;
-                break;
-        }
     }
 
     public String getName() {
@@ -34,6 +18,18 @@ public class EquipementOffensif {
 
     public int getAttack() {
         return forceDAttaque;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setForceDAttaque(int atk) {
+        this.forceDAttaque = atk;
     }
 
     @Override

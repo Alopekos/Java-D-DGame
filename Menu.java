@@ -59,7 +59,7 @@ public class Menu {
     }
 
     public void printPersonnage(Personnage personnage) {
-        System.out.println(personnage);
+        System.out.println(personnage.toString());
     }
 
     public void printDices() {

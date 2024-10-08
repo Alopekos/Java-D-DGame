@@ -1,4 +1,4 @@
-public class EquipementDefensif {
+public abstract class EquipementDefensif {
     private String name;
     private String type;
     private int defense;
@@ -36,6 +36,19 @@ public class EquipementDefensif {
         return defense;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    @Override
     public String toString() {
         String message = "\n\nNom: " + this.name
                 + " / Type: "
