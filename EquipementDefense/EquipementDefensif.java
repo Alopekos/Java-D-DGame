@@ -1,6 +1,7 @@
 package EquipementDefense;
 
 import Cases.Case;
+import Personnages.Personnage;
 
 public abstract class EquipementDefensif implements Case {
     private String name;
@@ -34,6 +35,11 @@ public abstract class EquipementDefensif implements Case {
 
     public void setDefense(int defense) {
         this.defense = defense;
+    }
+
+    @Override
+    public void interact(Personnage personnage) {
+        System.out.println("Vous trouvez un item défensif");
     }
 
     @Override

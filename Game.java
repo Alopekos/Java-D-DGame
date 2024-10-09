@@ -1,7 +1,7 @@
 import Cases.Case;
-import Cases.Ennemi;
 import Cases.Vide;
-import CustomException.PersonnageHorsPlateauException;
+import Ennemis.Ennemi;
+import Ennemis.Dragon;
 import EquipementDefense.Bouclier;
 import EquipementDefense.EquipementDefensif;
 import EquipementDefense.Philtre;
@@ -11,7 +11,8 @@ import EquipementOffense.Sort;
 import Personnages.Guerrier;
 import Personnages.Mage;
 import Personnages.Personnage;
-import Potions.Potion;
+import Potionspkg.GrandePotion;
+import Potionspkg.PotionMineure;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -93,20 +94,16 @@ public class Game {
         menu.showPlayerTile(tileNumber);
         while (true) {
             menu.printTileEvent(tableau.get(tileNumber));
+
             String showPersonnage = menu.dice_menu();
             int dice_roll = (int) ((Math.random() * 6) + 1);
+
             switch (showPersonnage) {
                 case "1" -> {
-                    try {
-                        if (tileNumber + dice_roll > 70) {
-                            throw new PersonnageHorsPlateauException("Erreur: Vous êtes en dehors du plateau.");
-                        }
 
-                        tileNumber = dice_game(tileNumber, dice_roll);
-                    } catch (PersonnageHorsPlateauException e) {
-                        menu.clearScreen();
-                        System.err.println(e.getMessage());
-                    }
+                    tileNumber = dice_game(tileNumber, dice_roll);
+                    tableau.get(tileNumber).interact(personnage);
+                    checkForLose(tableau.get(tileNumber));
                 }
                 case "2" -> {
                     menu.clearScreen();
@@ -146,6 +143,7 @@ public class Game {
 
             switch (restartOrClose) {
                 case "1" -> {
+                    choseCharacter();
                     menu.clearScreen();
                     menu.printDices();
                     jouer_un_tour(this.personnage);
@@ -176,17 +174,17 @@ public class Game {
         switch (classe) {
             case "mage" -> {
                 personnage = new Mage(name);
-                weapon = new Sort("Eclair");
-                defensive = new Philtre("Potion d'armure");
-                personnage.equipWeapon(weapon);
+                weapon = new Sort();
+                defensive = new Philtre();
                 personnage.equipDefensive(defensive);
+                personnage.equipWeapon(weapon);
             }
             case "guerrier" -> {
                 personnage = new Guerrier(name);
-                weapon = new Arme("Epée de fou");
-                defensive = new Bouclier("Bouclier de furieux");
-                personnage.equipWeapon(weapon);
+                weapon = new Arme();
+                defensive = new Bouclier();
                 personnage.equipDefensive(defensive);
+                personnage.equipWeapon(weapon);
             }
             default -> {
             }
@@ -199,18 +197,18 @@ public class Game {
         Case vide = new Vide();
         Case philtre = new Philtre("Potion du divin");
         Case bouclier = new Bouclier("Bouclier du divin");
-        Case potion = new Potion();
 
         tableau = new ArrayList<>();
 
         int numberOfEntries = 0;
 
-        numberOfEntries += insertEnnemi(3, "Dragons");
-        numberOfEntries += insertEnnemi(10, "Gobelin");
-        numberOfEntries += insertEnnemi(7, "Sorcier");
-        numberOfEntries += insertItem(3, philtre);
-        numberOfEntries += insertItem(3, bouclier);
-        numberOfEntries += insertItem(7, potion);
+        numberOfEntries += insertDragon(15);
+        // numberOfEntries += insertEnnemi(10, "Gobelin");
+        // numberOfEntries += insertEnnemi(7, "Sorcier");
+        numberOfEntries += insertItem(5, philtre);
+        numberOfEntries += insertItem(5, bouclier);
+        numberOfEntries += insertItem(4, new GrandePotion());
+        numberOfEntries += insertItem(7, new PotionMineure());
 
         numberOfEntries = 64 - numberOfEntries;
 
@@ -223,9 +221,9 @@ public class Game {
         tableau.set(0, vide);
     }
 
-    private int insertEnnemi(int number, String name) {
+    private int insertDragon(int number) {
         for (int i = 0; i < number; i++) {
-            tableau.add(new Ennemi(name));
+            tableau.add(new Dragon());
         }
         return number;
     }
@@ -235,5 +233,24 @@ public class Game {
             tableau.add(name);
         }
         return number;
+    }
+
+    private void checkForLose(Case tile) {
+        if (personnage.getNiveauDeVie() < 1) {
+            String restartOrClose = menu.lose_menu(tile.toString());
+
+            switch (restartOrClose) {
+                case "1" -> {
+                    choseCharacter();
+                    menu.clearScreen();
+                    menu.printDices();
+                    jouer_un_tour(this.personnage);
+                }
+                case "2" -> {
+                    menu.clearScreen();
+                    System.exit(0);
+                }
+            }
+        }
     }
 }

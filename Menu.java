@@ -1,5 +1,7 @@
 import Cases.Case;
 import Personnages.Personnage;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -158,6 +160,14 @@ public class Menu {
                 \u001b[35m        ⠀⣰⣿⠞⠉⠀⠀⠀⠀⠀⡄⡰⡆⠀⠀⠀⠀⠀⠀⢐⣌⡶⠀⠀⠀⠀⠀⠀⠀⠀
                 \u001b[36m        ⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⣸⠤⡐⠁⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀
                                                        """);
+        System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
+        String restartOrClose = scanner.next();
+        return restartOrClose;
+    }
+
+    public String lose_menu(String tileString) {
+        System.out.println("\u001b[33m \t\t***VOUS AVEZ PERDU*** \u001b[0m \n\n");
+        System.out.println("Vous avez été tué par un " + tileString);
         System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
         String restartOrClose = scanner.next();
         return restartOrClose;

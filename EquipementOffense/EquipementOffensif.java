@@ -1,13 +1,16 @@
 package EquipementOffense;
 
-public abstract class EquipementOffensif {
+import Cases.Case;
+import Personnages.Personnage;
+
+public abstract class EquipementOffensif implements Case {
     private String name;
     private String type;
     private int forceDAttaque;
 
     public EquipementOffensif() {
-        this.name = "unknown";
-        this.type = "unknown";
+        this.name = "aucun";
+        this.type = "aucun";
     }
 
     public String getName() {
@@ -32,6 +35,11 @@ public abstract class EquipementOffensif {
 
     public void setForceDAttaque(int atk) {
         this.forceDAttaque = atk;
+    }
+
+    @Override
+    public void interact(Personnage personnage) {
+        System.out.println("Vous trouvez un item offensif");
     }
 
     @Override

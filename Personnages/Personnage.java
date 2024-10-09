@@ -12,11 +12,19 @@ public abstract class Personnage {
     private EquipementDefensif bouclier;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getClasse() {
-        return classe;
+        return this.classe;
+    }
+
+    public int getNiveauDeVie() {
+        return this.niveauDeVie;
+    }
+
+    public int getAttack(){
+        return this.forceDAttaque;
     }
 
     public void setName(String name) {
