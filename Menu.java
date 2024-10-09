@@ -1,6 +1,6 @@
-import java.util.Scanner;
-
+import Cases.Case;
 import Personnages.Personnage;
+import java.util.Scanner;
 
 public class Menu {
     private final Scanner scanner;
@@ -163,9 +163,15 @@ public class Menu {
         return restartOrClose;
     }
 
+    public void printTileEvent(Case tableau) {
+        System.out.println("\u001B[36m");
+        System.out.println(tableau);
+        System.out.println("\u001B[0m");
+    }
+
     public void showPlayerTile(int tileNumber) {
         System.out.println(
-                "\n\n  Vous vous trouvez sur la case n°" + tileNumber
+                "\n\n  Vous vous trouvez sur la case n°" + (tileNumber + 1)
                         + "/64. \u001b[0m \n");
 
     }

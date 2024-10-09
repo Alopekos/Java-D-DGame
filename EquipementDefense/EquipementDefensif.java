@@ -1,6 +1,8 @@
 package EquipementDefense;
 
-public abstract class EquipementDefensif {
+import Cases.Case;
+
+public abstract class EquipementDefensif implements Case {
     private String name;
     private String type;
     private int defense;
@@ -36,10 +38,7 @@ public abstract class EquipementDefensif {
 
     @Override
     public String toString() {
-        String message = "\n\nNom: " + this.name
-                + " / Type: "
-                + this.type
-                + "\n🛡️: +" + this.defense;
+        String message = "\n" + this.type + ": " + this.name + "\n   +" + this.defense + "🛡️";
         return message;
     }
 }

@@ -46,12 +46,13 @@ public abstract class Personnage {
     @Override
     public String toString() {
         String message = "\n \u001B[33m*** Caracteristiques ***\u001B[0m \nNom: " + this.name
-                + " / Classe: "
+                + "\nClasse: "
                 + this.classe
                 + "\nPdv: "
                 + this.niveauDeVie + "\u001B[34m (+" + this.bouclier.getDefense() + ") \u001B[0m"
                 + "\nAtk: " + this.forceDAttaque + "\u001B[34m (+" + this.arme.getAttack()
-                + ") \u001B[37m \n\nTotal: \n💖 " + (this.niveauDeVie + this.bouclier.getDefense()) + "\n🗡️  "
+                + ") \u001B[37m \n\n\u001B[33mTotal:\u001B[0m \n🛡️  " + (this.niveauDeVie + this.bouclier.getDefense())
+                + "\n🗡️  "
                 + (this.forceDAttaque + this.arme.getAttack())
                 + " \n\n \u001B[33m*** Equipement ***\u001B[0m "
                 + this.arme.toString()

@@ -36,10 +36,7 @@ public abstract class EquipementOffensif {
 
     @Override
     public String toString() {
-        String message = "\nNom: " + this.name
-                + " / Type: "
-                + this.type
-                + "\n🗡️: +" + this.forceDAttaque;
+        String message = "\n" + this.type + ": " + this.name + "\n   +" + this.forceDAttaque + "🗡️";
         return message;
     }
 }
