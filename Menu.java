@@ -1,5 +1,6 @@
-import Cases.Case;
-import Personnages.Personnage;
+import cases.Case;
+import personnages.Personnage;
+
 import java.util.Scanner;
 
 public class Menu {

@@ -1,20 +1,21 @@
-import Cases.Case;
-import Cases.Vide;
-import CustomException.OutOfMenuException;
-import Ennemis.Dragon;
-import Ennemis.Gobelin;
-import Ennemis.Sorcier;
-import EquipementDefense.Bouclier;
-import EquipementDefense.EquipementDefensif;
-import EquipementDefense.Philtre;
-import EquipementOffense.Arme;
-import EquipementOffense.EquipementOffensif;
-import EquipementOffense.Sort;
-import Personnages.Guerrier;
-import Personnages.Mage;
-import Personnages.Personnage;
-import Potionspkg.GrandePotion;
-import Potionspkg.PotionMineure;
+import cases.Case;
+import cases.Vide;
+import customException.OutOfMenuException;
+import ennemis.Dragon;
+import ennemis.Gobelin;
+import ennemis.Sorcier;
+import equipement.defense.Bouclier;
+import equipement.defense.EquipementDefensif;
+import equipement.defense.Philtre;
+import equipement.offense.Arme;
+import equipement.offense.EquipementOffensif;
+import equipement.offense.Sort;
+import equipement.potion.GrandePotion;
+import equipement.potion.PotionMineure;
+import personnages.Guerrier;
+import personnages.Mage;
+import personnages.Personnage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -31,17 +32,21 @@ public class Game {
     }
 
     public void start_game() {
-        createBoard();
-        String menu_choice = menu.choseMenu();
+        try {
+            createBoard();
+            String menu_choice = menu.choseMenu();
 
-        switch (menu_choice) {
-
-            case "1" -> this.startGame();
-            case "2" -> menu.clearScreen();
-            default -> {
-                menu.clearScreen();
-                start_game();
+            switch (menu_choice) {
+                case "1" -> this.startGame();
+                case "2" -> menu.clearScreen();
+                default -> {
+                    menu.clearScreen();
+                    throw new OutOfMenuException("OutOfMenuException: \n");
+                }
             }
+        } catch (OutOfMenuException e) {
+            System.out.println(e.getMessage() + "Choix de menu non-valide. Veuillez réessayer.\n");
+            start_game();
         }
     }
 
