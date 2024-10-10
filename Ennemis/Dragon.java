@@ -8,9 +8,9 @@ public class Dragon extends Ennemi {
         this.setAtk(4);
     }
 
-    @Override 
-    public String toString(){
-        String msg = "Dragon";
+    @Override
+    public String toString() {
+        String msg = "Case: Dragon";
         return msg;
     }
 }

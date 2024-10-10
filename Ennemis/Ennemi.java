@@ -32,17 +32,17 @@ public class Ennemi implements Case {
         return this.hp;
     }
 
+    @Override
     public void interact(Personnage personnage) {
         if (personnage.getAttack() >= this.hp) {
             System.out.println("Vous avez abbatu l'ennemi");
         } else {
             personnage.setNiveauDeVie(personnage.getNiveauDeVie() - this.atk);
             if (personnage.getNiveauDeVie() > 0) {
-            
 
                 System.out.println("Il ne vous reste plus que " + personnage.getNiveauDeVie() + "PDV.");
             }
-           
+
         }
     }
 

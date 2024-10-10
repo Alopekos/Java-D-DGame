@@ -1,7 +1,9 @@
 import Cases.Case;
 import Cases.Vide;
-import Ennemis.Ennemi;
+import CustomException.OutOfMenuException;
 import Ennemis.Dragon;
+import Ennemis.Gobelin;
+import Ennemis.Sorcier;
 import EquipementDefense.Bouclier;
 import EquipementDefense.EquipementDefensif;
 import EquipementDefense.Philtre;
@@ -194,41 +196,31 @@ public class Game {
     }
 
     public void createBoard() {
-        Case vide = new Vide();
-        Case philtre = new Philtre("Potion du divin");
-        Case bouclier = new Bouclier("Bouclier du divin");
 
         tableau = new ArrayList<>();
 
         int numberOfEntries = 0;
 
-        numberOfEntries += insertDragon(15);
-        // numberOfEntries += insertEnnemi(10, "Gobelin");
-        // numberOfEntries += insertEnnemi(7, "Sorcier");
-        numberOfEntries += insertItem(5, philtre);
-        numberOfEntries += insertItem(5, bouclier);
-        numberOfEntries += insertItem(4, new GrandePotion());
-        numberOfEntries += insertItem(7, new PotionMineure());
+        numberOfEntries += insertEncounter(15, new Gobelin());
+        numberOfEntries += insertEncounter(10, new Sorcier());
+        numberOfEntries += insertEncounter(7, new Dragon());
+        numberOfEntries += insertEncounter(5, new Philtre("Potion du divin"));
+        numberOfEntries += insertEncounter(5, new Bouclier("Bouclier du divin"));
+        numberOfEntries += insertEncounter(4, new GrandePotion());
+        numberOfEntries += insertEncounter(7, new PotionMineure());
 
         numberOfEntries = 64 - numberOfEntries;
 
         // Rajouter les cases vides
         for (int i = 0; i < numberOfEntries; i++) {
-            tableau.add(vide);
+            tableau.add(new Vide());
         }
 
         Collections.shuffle(tableau);
-        tableau.set(0, vide);
+        tableau.set(0, new Vide());
     }
 
-    private int insertDragon(int number) {
-        for (int i = 0; i < number; i++) {
-            tableau.add(new Dragon());
-        }
-        return number;
-    }
-
-    private int insertItem(int number, Case name) {
+    private int insertEncounter(int number, Case name) {
         for (int i = 0; i < number; i++) {
             tableau.add(name);
         }
@@ -237,6 +229,9 @@ public class Game {
 
     private void checkForLose(Case tile) {
         if (personnage.getNiveauDeVie() < 1) {
+            menu.clearScreen();
+            menu.printLose();
+            menu.printTileEvent(tile);
             String restartOrClose = menu.lose_menu(tile.toString());
 
             switch (restartOrClose) {

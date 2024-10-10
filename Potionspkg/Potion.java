@@ -25,7 +25,7 @@ public abstract class Potion implements Case {
 
     @Override
     public String toString() {
-        String msg = "Cette case contient une potion redonnant " + this.hpRestore + "PDV";
+        String msg = "Case: potion redonnant " + this.hpRestore + "PDV";
         return msg;
     }
 }

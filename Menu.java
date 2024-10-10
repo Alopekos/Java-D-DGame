@@ -1,7 +1,5 @@
 import Cases.Case;
 import Personnages.Personnage;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -166,11 +164,14 @@ public class Menu {
     }
 
     public String lose_menu(String tileString) {
-        System.out.println("\u001b[33m \t\t***VOUS AVEZ PERDU*** \u001b[0m \n\n");
-        System.out.println("Vous avez été tué par un " + tileString);
+        System.out.println("Vous avez été tué.");
         System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
         String restartOrClose = scanner.next();
         return restartOrClose;
+    }
+
+    public void printLose() {
+        System.out.println("\u001b[33m \n\t***VOUS AVEZ PERDU*** \u001b[0m \n");
     }
 
     public void printTileEvent(Case tableau) {
@@ -181,7 +182,7 @@ public class Menu {
 
     public void showPlayerTile(int tileNumber) {
         System.out.println(
-                "\n\n  Vous vous trouvez sur la case n°" + (tileNumber + 1)
+                "\n\n\u001b[33m  Vous vous trouvez sur la case n°" + (tileNumber + 1)
                         + "/64. \u001b[0m \n");
 
     }

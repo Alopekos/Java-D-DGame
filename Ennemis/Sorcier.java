@@ -10,7 +10,7 @@ public class Sorcier extends Ennemi {
 
     @Override
     public String toString() {
-        String msg = "Sorcier";
+        String msg = "Case: Sorcier";
         return msg;
     }
 }

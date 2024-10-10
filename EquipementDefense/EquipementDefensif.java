@@ -44,7 +44,9 @@ public abstract class EquipementDefensif implements Case {
 
     @Override
     public String toString() {
-        String message = "\n" + this.type + ": " + this.name + "\n   +" + this.defense + "🛡️";
+        String message = "Case: Item\n\u001b[0mVous obtenez un " + this.type + ": \"" + this.name + "\" +"
+                + this.defense
+                + "🛡️";
         return message;
     }
 }

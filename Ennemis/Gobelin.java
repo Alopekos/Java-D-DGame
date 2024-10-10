@@ -10,7 +10,7 @@ public class Gobelin extends Ennemi {
 
     @Override
     public String toString() {
-        String msg = "Gobelin";
+        String msg = "Case: Gobelin";
         return msg;
     }
 }

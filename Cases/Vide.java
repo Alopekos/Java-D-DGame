@@ -11,12 +11,11 @@ public class Vide implements Case {
 
     @Override
     public void interact(Personnage personnage) {
-        System.out.println("Cette case est vide");
     }
 
     @Override
     public String toString() {
-        String msg = "Cette case est vide";
+        String msg = "Case: vide";
         return msg;
     }
 }

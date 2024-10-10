@@ -23,7 +23,7 @@ public abstract class Personnage {
         return this.niveauDeVie;
     }
 
-    public int getAttack(){
+    public int getAttack() {
         return this.forceDAttaque;
     }
 
@@ -62,9 +62,9 @@ public abstract class Personnage {
                 + ") \u001B[37m \n\n\u001B[33mTotal:\u001B[0m \n🛡️  " + (this.niveauDeVie + this.bouclier.getDefense())
                 + "\n🗡️  "
                 + (this.forceDAttaque + this.arme.getAttack())
-                + " \n\n \u001B[33m*** Equipement ***\u001B[0m "
-                + this.arme.toString()
-                + this.bouclier.toString();
+                + " \n\n \u001B[33m*** Equipement ***\u001B[0m \n"
+                + this.bouclier.getType() + ": " + this.bouclier.getName() + " +" + this.bouclier.getDefense() + "🛡️\n"
+                + this.arme.getType() + ": " + this.arme.getName() + " +" + this.arme.getAttack() + "🗡️";
         return message;
     }
 }
