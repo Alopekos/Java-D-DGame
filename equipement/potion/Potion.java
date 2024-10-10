@@ -6,8 +6,8 @@ import personnages.Personnage;
 public abstract class Potion implements Case {
     private int hpRestore;
 
-    public Potion() {
-
+    public Potion(int hpRestore) {
+        this.hpRestore = hpRestore;
     }
 
     public void setHpRestore(int restore) {
@@ -20,7 +20,11 @@ public abstract class Potion implements Case {
 
     @Override
     public void interact(Personnage personnage) {
-        personnage.setNiveauDeVie(personnage.getNiveauDeVie() + hpRestore);
+        if (personnage.getNiveauDeVie() + hpRestore > personnage.getMaxHp()) {
+            personnage.setNiveauDeVie(personnage.getMaxHp());
+        } else {
+            personnage.setNiveauDeVie(personnage.getNiveauDeVie() + hpRestore);
+        }
     }
 
     @Override

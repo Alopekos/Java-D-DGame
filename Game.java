@@ -12,12 +12,11 @@ import equipement.offense.EquipementOffensif;
 import equipement.offense.Sort;
 import equipement.potion.GrandePotion;
 import equipement.potion.PotionMineure;
+import java.util.ArrayList;
+import java.util.Collections;
 import personnages.Guerrier;
 import personnages.Mage;
 import personnages.Personnage;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Game {
     private Personnage personnage;
@@ -206,13 +205,17 @@ public class Game {
 
         int numberOfEntries = 0;
 
-        numberOfEntries += insertEncounter(15, new Gobelin());
+        numberOfEntries += insertEncounter(10, new Gobelin());
         numberOfEntries += insertEncounter(10, new Sorcier());
-        numberOfEntries += insertEncounter(7, new Dragon());
-        numberOfEntries += insertEncounter(5, new Philtre("Potion du divin"));
-        numberOfEntries += insertEncounter(5, new Bouclier("Bouclier du divin"));
-        numberOfEntries += insertEncounter(4, new GrandePotion());
-        numberOfEntries += insertEncounter(7, new PotionMineure());
+        numberOfEntries += insertEncounter(4, new Dragon());
+        numberOfEntries += insertEncounter(5, new Philtre("Potion divine", 2));
+        numberOfEntries += insertEncounter(5, new Bouclier("Bouclier  divin", 2));
+        numberOfEntries += insertEncounter(4, new Arme("Epée", 5));
+        numberOfEntries += insertEncounter(5, new Arme("Massue", 3));
+        numberOfEntries += insertEncounter(2, new Sort("Boule de feu", 7));
+        numberOfEntries += insertEncounter(5, new Sort("Eclair", 2));
+        numberOfEntries += insertEncounter(2, new GrandePotion());
+        numberOfEntries += insertEncounter(6, new PotionMineure());
 
         numberOfEntries = 64 - numberOfEntries;
 

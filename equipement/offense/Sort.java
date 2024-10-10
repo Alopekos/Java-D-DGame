@@ -2,10 +2,10 @@ package equipement.offense;
 
 public class Sort extends EquipementOffensif {
     public Sort() {
-        this("Aucun");
+        this("Aucun", 0);
     }
 
-    public Sort(String name) {
-        super(name, "Sort", 10);
+    public Sort(String name, int atk) {
+        super(name, "Sort", atk);
     }
 }

@@ -40,12 +40,25 @@ public abstract class EquipementOffensif implements Case {
 
     @Override
     public void interact(Personnage personnage) {
-        System.out.println("Vous trouvez un item offensif");
+        System.out.print("Vous trouvez un item offensif pour la classe ");
+        switch (this.type) {
+            case "Sort" -> System.out.print("mage.\n");
+            case "Arme" -> System.out.print("guerrier.\n");
+            default -> {
+            }
+        }
+
+        if (personnage.getArme().forceDAttaque < this.forceDAttaque) {
+            if (personnage.getClasse().equals("mage") && this.type.equals("Sort")
+                    || personnage.getClasse().equals("guerrier") && this.type.equals("Arme")) {
+                personnage.equipWeapon(this);
+            }
+        }
     }
 
     @Override
     public String toString() {
-        String message = "Case: Item\n\u001b[0mVous obtenez une " + this.type + ": \"" + this.name + "\" +"
+        String message = "Case: Item\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
                 + this.forceDAttaque + "🗡️";
         return message;
     }

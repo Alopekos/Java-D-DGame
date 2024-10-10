@@ -41,11 +41,18 @@ public abstract class EquipementDefensif implements Case {
     @Override
     public void interact(Personnage personnage) {
         System.out.println("Vous trouvez un item défensif");
+        if (personnage.getBouclier().defense < this.defense) {
+            if (personnage.getClasse().equals("mage") && this.type.equals("Philtre")
+                    || personnage.getClasse().equals("guerrier") && this.type.equals("Bouclier")) {
+                personnage.equipDefensive(this);
+            }
+        }
+
     }
 
     @Override
     public String toString() {
-        String message = "Case: Item\n\u001b[0mVous obtenez un " + this.type + ": \"" + this.name + "\" +"
+        String message = "Case: Item\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
                 + this.defense
                 + "🛡️";
         return message;

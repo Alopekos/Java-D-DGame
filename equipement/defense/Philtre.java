@@ -2,10 +2,10 @@ package equipement.defense;
 
 public class Philtre extends EquipementDefensif {
     public Philtre() {
-        this("Aucun");
+        this("Aucun", 0);
     }
 
-    public Philtre(String name) {
-        super(name, "Philtre", 10);
+    public Philtre(String name, int defense) {
+        super(name, "Philtre", defense);
     }
 }
