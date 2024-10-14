@@ -40,7 +40,14 @@ public abstract class EquipementDefensif implements Case {
 
     @Override
     public void interact(Personnage personnage) {
-        System.out.println("Vous trouvez un item défensif");
+        System.out.print("Vous trouvez un item defensif pour la classe ");
+        switch (this.type) {
+            case "Philtre" -> System.out.print("mage.\n");
+            case "Bouclier" -> System.out.print("guerrier.\n");
+            default -> {
+            }
+        }
+
         if (personnage.getBouclier().defense < this.defense) {
             if (personnage.getClasse().equals("mage") && this.type.equals("Philtre")
                     || personnage.getClasse().equals("guerrier") && this.type.equals("Bouclier")) {
@@ -51,8 +58,31 @@ public abstract class EquipementDefensif implements Case {
     }
 
     @Override
+    public String printArt() {
+        String msg = """
+                \t            _______________________
+                \t         / \\$$$$$$$$$$$$$$$$$$$$$$\\
+                \t        (    \\$$$$$$$$$k\\;\\&j$$$$$$)
+                \t        |\\     \\$$$$$$$,'    `^<$$$|
+                \t        |$$\\     \\$$$;' __n,    `:$|
+                \t        |$$$$\\     \\$$jT$$$$i. ,$$$|
+                \t         |$$$$$\\     \\$$$$$$$;J$$$|
+                \t         |$$$$$$$\\     \\$$$$$$$$$$|
+                \t          \\$$$$$$$$\\     \\$$$$$$$/
+                \t           \\$$$$$$$$$\\     \\$$$$/
+                \t            \\$$$$$$$$$$\\     \\$/
+                \t             \\$$$$$$$$$$$\\    /
+                \t              \\$$$$$$$$$$$$\\ /
+                \t                \\$$$$$$$$$$/
+                \t                  \\$$$$$$/
+                \t                    \\$$/
+                                        """;
+        return msg;
+    }
+
+    @Override
     public String toString() {
-        String message = "Case: Item\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
+        String message = printArt() + "\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
                 + this.defense
                 + "🛡️";
         return message;

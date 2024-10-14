@@ -57,8 +57,40 @@ public abstract class EquipementOffensif implements Case {
     }
 
     @Override
+    public String printArt() {
+        String msg = """
+                \t       .m.
+                \t       (;)
+                \t       (;)
+                \t       (;)
+                \t    .  (;)  .
+                \t    |\\_(;)_/|
+                \t    |/ )|( \\|
+                \t      ( o )
+                \t       )8(
+                \t      ( o )
+                \t       )8(
+                \t      ;|S|;
+                \t      ||S||
+                \t      ||S||
+                \t      ||S|<
+                \t      ||S||
+                \t      ||S||
+                \t      ||S||
+                \t      ||S||
+                \t      >|S||
+                \t      ||S||
+                \t      ||S||
+                \t      \\\\ //
+                \t       \\V/
+                \t        V
+                        """;
+        return msg;
+    }
+
+    @Override
     public String toString() {
-        String message = "Case: Item\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
+        String message = printArt() + "\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
                 + this.forceDAttaque + "🗡️";
         return message;
     }

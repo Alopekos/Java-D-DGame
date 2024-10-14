@@ -3,10 +3,16 @@ package ennemis;
 import cases.Case;
 import personnages.Personnage;
 
-public class Ennemi implements Case {
+public abstract class Ennemi implements Case {
     private String name;
     private int atk;
     private int hp;
+
+    public Ennemi(String name, int atk, int hp) {
+        this.name = name;
+        this.atk = atk;
+        this.hp = hp;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -35,12 +41,17 @@ public class Ennemi implements Case {
     @Override
     public void interact(Personnage personnage) {
         if (personnage.getAttack() >= this.hp) {
-            System.out.println("Vous avez abbatu l'ennemi");
+            System.out.println("\tUn " + this.name + " vous attaque !!!");
+            System.out.println(printArt());
+            System.out.println("Mais il ne fait pas le poids face à vous, vous le pourfendez.");
         } else {
             personnage.setNiveauDeVie(personnage.getNiveauDeVie() - this.atk);
             if (personnage.getNiveauDeVie() > 0) {
-
-                System.out.println("Il ne vous reste plus que " + personnage.getNiveauDeVie() + "PDV.");
+                System.out.println("Un " + this.name + " vous attaque !!!");
+                System.out.println(printArt());
+                System.out.println(
+                        "Il vous assène un coup vous enlevant " + this.atk + "PDV. \nIl ne vous reste que "
+                                + personnage.getNiveauDeVie() + "PDV.");
             }
 
         }
@@ -48,7 +59,7 @@ public class Ennemi implements Case {
 
     @Override
     public String toString() {
-        String msg = "Vous rencontrez un " + this.name;
+        String msg = "";
         return msg;
     }
 }

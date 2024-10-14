@@ -29,7 +29,7 @@ public abstract class Potion implements Case {
 
     @Override
     public String toString() {
-        String msg = "Case: potion redonnant " + this.hpRestore + "PDV";
+        String msg = printArt() + "\n\tPotion redonnant " + this.hpRestore + "PDV";
         return msg;
     }
 }

@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"Game","l":"choseCharacter()"},{"p":"<Unnamed>","c":"Game","l":"createBoard()"},{"p":"<Unnamed>","c":"Game","l":"Game()","u":"%3Cinit%3E()"},{"p":"<Unnamed>","c":"Game","l":"mainScreenMenu()"},{"p":"<Unnamed>","c":"Game","l":"startGame()"}];updateSearchResults();

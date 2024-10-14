@@ -2,7 +2,7 @@ package equipement.defense;
 
 public class Philtre extends EquipementDefensif {
     public Philtre() {
-        this("Aucun", 0);
+        this("Philtre mineur", 0);
     }
 
     public Philtre(String name, int defense) {

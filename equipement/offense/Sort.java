@@ -2,7 +2,7 @@ package equipement.offense;
 
 public class Sort extends EquipementOffensif {
     public Sort() {
-        this("Aucun", 0);
+        this("Eclair de givre", 0);
     }
 
     public Sort(String name, int atk) {

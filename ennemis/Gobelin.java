@@ -3,14 +3,30 @@ package ennemis;
 public class Gobelin extends Ennemi {
 
     public Gobelin() {
-        this.setName("Gobelin");
-        this.setHp(6);
-        this.setAtk(1);
+        super("Gobelin", 1, 6);
+    }
+
+    @Override
+    public String printArt() {
+        String msg = """
+                \t               ,      ,
+                \t              /(.-""-.)\\
+                \t          |\\  \\/      \\/  /|
+                \t          | \\ / =.  .= \\ / |
+                \t          \\( \\   o\\/o   / )/
+                \t           \\_, '-/  \\-' ,_/
+                \t             /   \\__/   \\
+                \t             \\ \\__/\\__/ /
+                \t           ___\\ \\|--|/ /___
+                \t         /`    \\      /    `\\
+                \t        /       '----'       \\
+                                  """;
+        return msg;
     }
 
     @Override
     public String toString() {
-        String msg = "Case: Gobelin";
+        String msg = "Gobelin";
         return msg;
     }
 }

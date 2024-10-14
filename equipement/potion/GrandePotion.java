@@ -5,4 +5,23 @@ public class GrandePotion extends Potion {
         super(5);
     }
 
+    @Override
+    public String printArt() {
+        String msg = """
+                               _____
+                              `.___,'
+                               (___)
+                               <   >
+                                ) (
+                               /`-.\\
+                              /     \\
+                             / _    _\\
+                            :,' `-.' `:
+                            |         |
+                            :         ;
+                             \\       /
+                              `.___.'
+                """;
+        return msg;
+    }
 }
