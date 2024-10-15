@@ -6,7 +6,7 @@ import personnages.Personnage;
 public abstract class Potion implements Case {
     private int hpRestore;
 
-    public Potion(int hpRestore) {
+    protected Potion(int hpRestore) {
         this.hpRestore = hpRestore;
     }
 
@@ -29,7 +29,6 @@ public abstract class Potion implements Case {
 
     @Override
     public String toString() {
-        String msg = printArt() + "\n\tPotion redonnant " + this.hpRestore + "PDV";
-        return msg;
+        return printArt() + "\n\tPotion redonnant " + this.hpRestore + "PDV";
     }
 }

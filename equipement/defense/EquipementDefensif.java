@@ -45,21 +45,21 @@ public abstract class EquipementDefensif implements Case {
             case "Philtre" -> System.out.print("mage.\n");
             case "Bouclier" -> System.out.print("guerrier.\n");
             default -> {
+                break;
             }
         }
 
-        if (personnage.getBouclier().defense < this.defense) {
-            if (personnage.getClasse().equals("mage") && this.type.equals("Philtre")
-                    || personnage.getClasse().equals("guerrier") && this.type.equals("Bouclier")) {
-                personnage.equipDefensive(this);
-            }
+        if (personnage.getBouclier().defense < this.defense && personnage.getClasse().equals("mage")
+                && this.type.equals("Philtre")
+                || personnage.getClasse().equals("guerrier") && this.type.equals("Bouclier")) {
+            personnage.equipDefensive(this);
         }
 
     }
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
                 \t            _______________________
                 \t         / \\$$$$$$$$$$$$$$$$$$$$$$\\
                 \t        (    \\$$$$$$$$$k\\;\\&j$$$$$$)
@@ -77,14 +77,13 @@ public abstract class EquipementDefensif implements Case {
                 \t                  \\$$$$$$/
                 \t                    \\$$/
                                         """;
-        return msg;
     }
 
     @Override
     public String toString() {
-        String message = printArt() + "\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
+
+        return printArt() + "\n\u001b[0m" + this.type + ": \"" + this.name + "\" +"
                 + this.defense
                 + "🛡️";
-        return message;
     }
 }

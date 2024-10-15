@@ -8,7 +8,7 @@ public class PotionMineure extends Potion {
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
 
                 \t          (-)
                 \t        .-'-'-.
@@ -16,6 +16,6 @@ public class PotionMineure extends Potion {
                 \t        |;:.._|
                 \t        `-...-'
                                 """;
-        return msg;
+
     }
 }

@@ -8,7 +8,7 @@ public class Dragon extends Ennemi {
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
                             ,'\\   |\\
                            / /.:  ;;
                           / :'|| //
@@ -38,12 +38,10 @@ public class Dragon extends Ennemi {
                            \\'\\(`.\\ `._ `-..___..-','
                               `'      ``-..___..-'
                             """;
-        return msg;
     }
 
     @Override
     public String toString() {
-        String msg = "Dragon";
-        return msg;
+        return "Dragon";
     }
 }

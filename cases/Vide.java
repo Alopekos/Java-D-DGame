@@ -5,7 +5,7 @@ import personnages.Personnage;
 public class Vide implements Case {
     @Override
     public String printArt() {
-        String msg = """
+        return """
                  /|     -_-                                             _-  |\\
                 / |_-_- _                                         -_- _-   -| \\
                   |                            _-  _--                      |
@@ -25,16 +25,15 @@ public class Vide implements Case {
                  /                                             _ -           \\
                 /   -_- _ -             _- _---                       -_-  -_ \\
                                 """;
-        return msg;
     }
 
     @Override
     public void interact(Personnage personnage) {
+        // This tile does not interact with player
     }
 
     @Override
     public String toString() {
-        String msg = printArt();
-        return msg;
+        return printArt();
     }
 }

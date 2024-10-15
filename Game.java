@@ -1,14 +1,13 @@
-import cases.Case;
+import java.util.*;
 import cases.Vide;
+import cases.Case;
 import customException.OutOfMenuException;
 import ennemis.Dragon;
 import ennemis.Gobelin;
 import ennemis.Sorcier;
 import equipement.defense.Bouclier;
-import equipement.defense.EquipementDefensif;
 import equipement.defense.Philtre;
 import equipement.offense.Arme;
-import equipement.offense.EquipementOffensif;
 import equipement.offense.Sort;
 import equipement.potion.GrandePotion;
 import equipement.potion.PotionMineure;
@@ -20,8 +19,6 @@ import personnages.Personnage;
 
 public class Game {
     private Personnage personnage;
-    private EquipementOffensif weapon;
-    private EquipementDefensif defensive;
     private ArrayList<Case> tableau;
     private final Menu menu;
 
@@ -109,6 +106,7 @@ public class Game {
                     menu.clearScreen();
                 }
                 default -> {
+                    break;
                 }
             }
         }
@@ -124,13 +122,14 @@ public class Game {
      */
     private boolean jouerUnTour(Personnage personnage) {
         int tileNumber = 0;
-
+        Random random = new Random();
         menu.showPlayerTile(tileNumber);
+        
         while (true) {
             menu.printTileEvent(tableau.get(tileNumber));
 
-            String showPersonnage = menu.dice_menu();
-            int diceRoll = (int) ((Math.random() * 6) + 1);
+            String showPersonnage = menu.diceMenu();
+            int diceRoll = random.nextInt(6) + 1;
 
             switch (showPersonnage) {
                 case "1" -> {
@@ -150,6 +149,9 @@ public class Game {
                 case "3" -> {
                     menu.clearScreen();
                     System.exit(0);
+                }
+                default -> {
+                    break;
                 }
             }
 
@@ -177,17 +179,17 @@ public class Game {
      * @param dice_roll  the value rolled on the dice
      * @return the new tile number
      */
-    private int diceGame(int tileNumber, int dice_roll) {
+    private int diceGame(int tileNumber, int diceRoll) {
         menu.clearScreen();
 
-        if (tileNumber + dice_roll < 63) {
+        if (tileNumber + diceRoll < 63) {
             menu.showDiceThrow();
-            menu.printSingleDice(dice_roll);
-            tileNumber += dice_roll;
+            menu.printSingleDice(diceRoll);
+            tileNumber += diceRoll;
             menu.showPlayerTile(tileNumber);
-        } else if (tileNumber + dice_roll == 63) {
-            tileNumber += dice_roll;
-            String restartOrClose = menu.win_menu();
+        } else if (tileNumber + diceRoll == 63) {
+            tileNumber += diceRoll;
+            String restartOrClose = menu.winMenu();
 
             switch (restartOrClose) {
                 case "1" -> {
@@ -200,11 +202,14 @@ public class Game {
                     menu.clearScreen();
                     System.exit(0);
                 }
+                default -> {
+                    break;
+                }
             }
-        } else if (tileNumber + dice_roll > 63) {
-            tileNumber = 63 - ((tileNumber + dice_roll) - 63);
+        } else if (tileNumber + diceRoll > 63) {
+            tileNumber = 63 - ((tileNumber + diceRoll) - 63);
             menu.showDiceThrow();
-            menu.printSingleDice(dice_roll);
+            menu.printSingleDice(diceRoll);
             menu.showPlayerTile(tileNumber);
         }
         return tileNumber;
@@ -217,6 +222,7 @@ public class Game {
      * @return the chosen character (Personnage)
      */
     public Personnage choseCharacter() {
+
         String classe = "";
 
         while (!checkClassCompatibility(classe)) {
@@ -228,19 +234,16 @@ public class Game {
         switch (classe) {
             case "mage" -> {
                 personnage = new Mage(name);
-                weapon = new Sort();
-                defensive = new Philtre();
-                personnage.equipDefensive(defensive);
-                personnage.equipWeapon(weapon);
+                personnage.equipDefensive(new Philtre());
+                personnage.equipWeapon(new Sort());
             }
             case "guerrier" -> {
                 personnage = new Guerrier(name);
-                weapon = new Arme();
-                defensive = new Bouclier();
-                personnage.equipDefensive(defensive);
-                personnage.equipWeapon(weapon);
+                personnage.equipDefensive(new Bouclier());
+                personnage.equipWeapon(new Arme());
             }
             default -> {
+                break;
             }
         }
 
@@ -315,6 +318,9 @@ public class Game {
                 case "2" -> {
                     menu.clearScreen();
                     System.exit(0);
+                }
+                default -> {
+                    break;
                 }
             }
         }

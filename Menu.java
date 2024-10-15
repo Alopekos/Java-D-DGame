@@ -17,8 +17,7 @@ public class Menu {
         System.out.println("\t\t||\u001B[35m ❌  2-\u001B[0mQuitter le jeu\u001B[0m               ||");
         System.out.println("\t\t========================================");
 
-        String menu_choice = scanner.next();
-        return menu_choice;
+        return scanner.next();
 
     }
 
@@ -54,14 +53,12 @@ public class Menu {
 
     public String choseClassType() {
         System.out.println("\u001B[35m \n\nChoisir une classe (mage🧙/guerrier🪓) : \u001B[0m");
-        String classe = scanner.next();
-        return classe;
+        return scanner.next();
     }
 
     public String choseName() {
         System.out.println("\n\u001B[35mVotre nom : \u001B[0m");
-        String name = scanner.next();
-        return name;
+        return scanner.next();
     }
 
     public String mainMenu() {
@@ -71,8 +68,7 @@ public class Menu {
         System.out.println("||\u001B[35m 🎲   3-\u001B[0mDémarrer le jeu                            ||");
         System.out.println("||\u001B[35m ❌   4-\u001B[0mQuitter le jeu                             ||");
         System.out.println("=======================================================");
-        String showPersonnage = scanner.next();
-        return showPersonnage;
+        return scanner.next();
     }
 
     public void printInvalidClass() {
@@ -104,7 +100,7 @@ public class Menu {
         String msg = "";
         switch (choice) {
             case 1 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬜️⬛️⬜️⬜️
@@ -112,7 +108,7 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             case 2 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬛️⬜️⬜⬜️
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
@@ -120,7 +116,7 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             case 3 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬛️⬜️⬜⬜️
                      \t\t  ⬜️⬜️⬛️⬜️⬜️
@@ -128,7 +124,7 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             case 4 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬛️⬜️⬛️⬜️
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
@@ -136,7 +132,7 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             case 5 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬛️⬜️⬛️⬜️
                      \t\t  ⬜️⬜️⬛️⬜️⬜️
@@ -144,7 +140,7 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             case 6 -> msg = """
-                     \n
+
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                      \t\t  ⬜️⬛️⬛️⬛️⬜️
                      \t\t  ⬜️⬛️⬛️⬛️⬜️
@@ -152,22 +148,22 @@ public class Menu {
                      \t\t  ⬜️⬜️⬜️⬜️⬜️
                     """;
             default -> {
+                break;
             }
         }
         System.out.println(msg);
     }
 
-    public String dice_menu() {
+    public String diceMenu() {
         System.out.println("=======================================================");
         System.out.println("||\u001B[35m 🎲  1-\u001b[0mLancer les dès                              ||");
         System.out.println("||\u001B[35m 🧬  2-\u001b[0mStatistiques du personnage                  ||");
         System.out.println("||\u001B[35m ❌  3-\u001b[0mQuitter le jeu \u001b[0m                             ||");
         System.out.println("=======================================================\n");
-        String showPersonnage = scanner.next();
-        return showPersonnage;
+        return scanner.next();
     }
 
-    public String win_menu() {
+    public String winMenu() {
         System.out.println("\u001b[33m \t\t-*-VOUS AVEZ GAGNE-*- \u001b[0m \n\n");
         System.out.println("""
                 \u001b[31m                    ⣀⣀⡠⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -185,15 +181,13 @@ public class Menu {
                 \u001b[36m        ⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⣸⠤⡐⠁⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀
                                                        """);
         System.out.println("\n\u001B[35m1-Rejouer 🔄\n2-Quitter le jeu ❌\u001b[0m");
-        String restartOrClose = scanner.next();
-        return restartOrClose;
+        return scanner.next();
     }
 
     public String loseMenu(String tileString) {
         System.out.println("Vous avez été tué par un " + tileString);
         System.out.println("\n\u001B[35m1-Rejouer \n2-Quitter le jeu \u001b[0m");
-        String restartOrClose = scanner.next();
-        return restartOrClose;
+        return scanner.next();
     }
 
     public void printLose() {

@@ -8,7 +8,7 @@ public class Sorcier extends Ennemi {
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
                                     ____
                                   .'* *.'
                                __/_*_*(_
@@ -32,12 +32,10 @@ public class Sorcier extends Ennemi {
                  _.-'       |      BBb       '-.  '-.
                 (____________\\____.dBBBb.________)____)
                                 """;
-        return msg;
     }
 
     @Override
     public String toString() {
-        String msg = "Sorcier";
-        return msg;
+        return "Sorcier";
     }
 }

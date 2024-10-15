@@ -7,7 +7,7 @@ public class GrandePotion extends Potion {
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
                                _____
                               `.___,'
                                (___)
@@ -22,6 +22,5 @@ public class GrandePotion extends Potion {
                              \\       /
                               `.___.'
                 """;
-        return msg;
     }
 }

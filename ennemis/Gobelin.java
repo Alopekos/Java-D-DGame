@@ -8,7 +8,7 @@ public class Gobelin extends Ennemi {
 
     @Override
     public String printArt() {
-        String msg = """
+        return """
                 \t               ,      ,
                 \t              /(.-""-.)\\
                 \t          |\\  \\/      \\/  /|
@@ -21,12 +21,10 @@ public class Gobelin extends Ennemi {
                 \t         /`    \\      /    `\\
                 \t        /       '----'       \\
                                   """;
-        return msg;
     }
 
     @Override
     public String toString() {
-        String msg = "Gobelin";
-        return msg;
+        return "Gobelin";
     }
 }

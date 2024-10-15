@@ -8,7 +8,7 @@ public abstract class Ennemi implements Case {
     private int atk;
     private int hp;
 
-    public Ennemi(String name, int atk, int hp) {
+    protected Ennemi(String name, int atk, int hp) {
         this.name = name;
         this.atk = atk;
         this.hp = hp;
@@ -59,7 +59,7 @@ public abstract class Ennemi implements Case {
 
     @Override
     public String toString() {
-        String msg = "";
-        return msg;
+        return "";
+
     }
 }
