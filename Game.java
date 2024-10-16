@@ -127,7 +127,7 @@ public class Game {
      * @return true if the game continues, false if it ends
      */
     private boolean jouerUnTour(Personnage personnage) {
-        int tileNumber = 0;
+        int tileNumber = 1;
         Random random = new Random();
         menu.showPlayerTile(tileNumber);
 
@@ -143,7 +143,7 @@ public class Game {
                     tileNumber = diceGame(tileNumber, diceRoll);
                     int interaction = tableau.get(tileNumber).interact(personnage, tileNumber);
                     if (interaction != 0) {
-                        tileNumber = interaction - 1;
+                        tileNumber = interaction;
                     }
                     checkForLose(tableau.get(tileNumber));
                 }

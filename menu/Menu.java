@@ -304,7 +304,7 @@ public class Menu {
      */
     public void showPlayerTile(int tileNumber) {
         System.out.println(
-                "\n\n\u001b[33m  Vous vous trouvez sur la case n°" + (tileNumber + 1)
+                "\n\n\u001b[33m  Vous vous trouvez sur la case n°" + (tileNumber)
                         + "/64. \u001b[0m \n\n=======================================================\n\n");
 
     }
