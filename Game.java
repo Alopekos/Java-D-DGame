@@ -11,6 +11,8 @@ import equipement.offense.Arme;
 import equipement.offense.Sort;
 import equipement.potion.GrandePotion;
 import equipement.potion.PotionMineure;
+import menu.Menu;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import personnages.Guerrier;
@@ -137,8 +139,12 @@ public class Game {
 
             switch (showPersonnage) {
                 case "1" -> {
+                    // Launches a dice
                     tileNumber = diceGame(tileNumber, diceRoll);
-                    tableau.get(tileNumber).interact(personnage);
+                    int interaction = tableau.get(tileNumber).interact(personnage, tileNumber);
+                    if (interaction != 0) {
+                        tileNumber = interaction - 1;
+                    }
                     checkForLose(tableau.get(tileNumber));
                 }
                 case "2" -> {

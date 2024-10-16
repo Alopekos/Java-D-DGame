@@ -28,8 +28,9 @@ public class Vide implements Case {
     }
 
     @Override
-    public void interact(Personnage personnage) {
+    public int interact(Personnage personnage, int tileNumber) {
         // This tile does not interact with player
+        return 0;
     }
 
     @Override

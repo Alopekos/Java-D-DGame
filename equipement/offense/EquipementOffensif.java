@@ -39,7 +39,7 @@ public abstract class EquipementOffensif implements Case {
     }
 
     @Override
-    public void interact(Personnage personnage) {
+    public int interact(Personnage personnage, int tileNumber) {
         System.out.print("Vous trouvez un item offensif pour la classe ");
         switch (this.type) {
             case "Sort" -> System.out.print("mage.\n");
@@ -54,6 +54,7 @@ public abstract class EquipementOffensif implements Case {
                 || personnage.getClasse().equals("guerrier") && this.type.equals("Arme")) {
             personnage.equipWeapon(this);
         }
+        return 0;
     }
 
     @Override

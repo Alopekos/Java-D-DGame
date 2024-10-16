@@ -4,7 +4,7 @@ import personnages.Personnage;
 
 public interface Case {
 
-    void interact(Personnage personnage);
+    int interact(Personnage personnage, int tileNumber);
 
     String printArt();
 }

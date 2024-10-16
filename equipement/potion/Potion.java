@@ -19,12 +19,14 @@ public abstract class Potion implements Case {
     }
 
     @Override
-    public void interact(Personnage personnage) {
+    public int interact(Personnage personnage, int tileNumber) {
         if (personnage.getNiveauDeVie() + hpRestore > personnage.getMaxHp()) {
             personnage.setNiveauDeVie(personnage.getMaxHp());
         } else {
             personnage.setNiveauDeVie(personnage.getNiveauDeVie() + hpRestore);
         }
+        return 0;
+
     }
 
     @Override

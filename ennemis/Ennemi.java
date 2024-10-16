@@ -2,6 +2,8 @@ package ennemis;
 
 import cases.Case;
 import personnages.Personnage;
+import menu.Menu;
+import java.util.*;
 
 public abstract class Ennemi implements Case {
     private String name;
@@ -39,22 +41,43 @@ public abstract class Ennemi implements Case {
     }
 
     @Override
-    public void interact(Personnage personnage) {
-        if (personnage.getAttack() >= this.hp) {
+    public int interact(Personnage personnage, int tileNumber) {
+        Menu menu = new Menu();
+        boolean isFightOver = false;
+        while (!isFightOver) {
             System.out.println("\tUn " + this.name + " vous attaque !!!");
             System.out.println(printArt());
-            System.out.println("Mais il ne fait pas le poids face à vous, vous le pourfendez.");
-        } else {
-            personnage.setNiveauDeVie(personnage.getNiveauDeVie() - this.atk);
-            if (personnage.getNiveauDeVie() > 0) {
-                System.out.println("Un " + this.name + " vous attaque !!!");
-                System.out.println(printArt());
-                System.out.println(
-                        "Il vous assène un coup vous enlevant " + this.atk + "PDV. \nIl ne vous reste que "
-                                + personnage.getNiveauDeVie() + "PDV.");
-            }
+            String choice = menu.fightMenu();
 
+            switch (choice) {
+                case "1":
+                    if (personnage.getAttack() >= this.hp) {
+                        System.out.println("Le monstre ne fait pas le poids face à vous, vous le pourfendez.");
+                        isFightOver = true;
+                    } else {
+                        personnage.setNiveauDeVie(personnage.getNiveauDeVie() - this.atk);
+                        if (personnage.getNiveauDeVie() > 0) {
+                            System.out.println(
+                                    "Il vous assène un coup vous enlevant " + this.atk + "PDV. \nIl ne vous reste que "
+                                            + personnage.getNiveauDeVie() + "PDV.");
+                        } else {
+                            isFightOver = true;
+                        }
+
+                    }
+                    break;
+                case "2":
+                    Random random = new Random();
+                    tileNumber -= 1 + random.nextInt(6);
+                    System.out.println("Vous vous enfuyez en case " + tileNumber + ".");
+                    isFightOver = true;
+                    break;
+
+                default:
+                    break;
+            }
         }
+        return tileNumber;
     }
 
     @Override
