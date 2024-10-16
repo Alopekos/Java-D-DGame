@@ -17,20 +17,24 @@ import personnages.Guerrier;
 import personnages.Mage;
 import personnages.Personnage;
 
+/**
+ * The {@code Game} class represents the logic that connects different aspects
+ * of the game.
+ * It initializes a character (Personnage) with offensive and defensive
+ * equipment.
+ * It also creates a game board as an ArrayList for the character to move on.
+ * 
+ * The Menu class is used to gather input from the user for character
+ * customization.
+ */
+
 public class Game {
     private Personnage personnage;
     private ArrayList<Case> tableau;
     private final Menu menu;
 
     /**
-     * The Game class represents the logic that connects different aspects
-     * of the game.
-     * It initializes a character (Personnage) with offensive and defensive
-     * equipment.
-     * It also creates a game board as an ArrayList for the character to move on.
-     * 
-     * The Menu class is used to gather input from the user for character
-     * customization.
+     * The {@code Game} class is constructed with a {@code Menu}
      */
     public Game() {
         this.menu = new Menu();
@@ -124,7 +128,7 @@ public class Game {
         int tileNumber = 0;
         Random random = new Random();
         menu.showPlayerTile(tileNumber);
-        
+
         while (true) {
             menu.printTileEvent(tableau.get(tileNumber));
 
