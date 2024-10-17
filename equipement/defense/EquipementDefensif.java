@@ -1,9 +1,9 @@
 package equipement.defense;
 
-import cases.Case;
+import cases.Interactable;
 import personnages.Personnage;
 
-public abstract class EquipementDefensif implements Case {
+public abstract class EquipementDefensif implements Interactable {
     private String name;
     private String type;
     private int defense;

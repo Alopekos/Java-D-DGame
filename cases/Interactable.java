@@ -2,7 +2,7 @@ package cases;
 
 import personnages.Personnage;
 
-public interface Case {
+public interface Interactable {
 
     int interact(Personnage personnage, int tileNumber);
 

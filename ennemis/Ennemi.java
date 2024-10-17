@@ -1,11 +1,11 @@
 package ennemis;
 
-import cases.Case;
+import cases.Interactable;
 import personnages.Personnage;
 import menu.Menu;
 import java.util.*;
 
-public abstract class Ennemi implements Case {
+public abstract class Ennemi implements Interactable {
     private String name;
     private int atk;
     private int hp;

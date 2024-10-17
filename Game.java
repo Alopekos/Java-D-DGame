@@ -1,6 +1,6 @@
 import java.util.*;
 import cases.Vide;
-import cases.Case;
+import cases.Interactable;
 import customException.OutOfMenuException;
 import ennemis.Dragon;
 import ennemis.Gobelin;
@@ -12,9 +12,6 @@ import equipement.offense.Sort;
 import equipement.potion.GrandePotion;
 import equipement.potion.PotionMineure;
 import menu.Menu;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import personnages.Guerrier;
 import personnages.Mage;
 import personnages.Personnage;
@@ -32,7 +29,7 @@ import personnages.Personnage;
 
 public class Game {
     private Personnage personnage;
-    private ArrayList<Case> tableau;
+    private ArrayList<Interactable> tableau;
     private final Menu menu;
 
     /**
@@ -53,7 +50,10 @@ public class Game {
 
             switch (menuChoice) {
                 case "1" -> this.mainScreenMenu();
-                case "2" -> menu.clearScreen();
+                case "2" -> {
+                    System.out.println("hey");
+                }
+                case "3" -> menu.clearScreen();
                 default -> {
                     menu.clearScreen();
                     throw new OutOfMenuException("OutOfMenuException: Choix de menu non-valide. Veuillez réessayer.\n");
@@ -182,8 +182,8 @@ public class Game {
     /**
      * Rolls a dice and advances the character on the board.
      * The function ensures that the character doesn't go beyond the final tile
-     * (tile 63).
-     * If the player lands exactly on tile 63, they win.
+     * (tile 64).
+     * If the player lands exactly on tile 64, they win.
      * 
      * @param tileNumber the current tile number
      * @param dice_roll  the value rolled on the dice
@@ -192,12 +192,12 @@ public class Game {
     private int diceGame(int tileNumber, int diceRoll) {
         menu.clearScreen();
 
-        if (tileNumber + diceRoll < 63) {
+        if (tileNumber + diceRoll < 64) {
             menu.showDiceThrow();
             menu.printSingleDice(diceRoll);
             tileNumber += diceRoll;
             menu.showPlayerTile(tileNumber);
-        } else if (tileNumber + diceRoll == 63) {
+        } else if (tileNumber + diceRoll == 64) {
             tileNumber += diceRoll;
             String restartOrClose = menu.winMenu();
 
@@ -216,8 +216,8 @@ public class Game {
                     break;
                 }
             }
-        } else if (tileNumber + diceRoll > 63) {
-            tileNumber = 63 - ((tileNumber + diceRoll) - 63);
+        } else if (tileNumber + diceRoll > 64) {
+            tileNumber = 64 - ((tileNumber + diceRoll) - 64);
             menu.showDiceThrow();
             menu.printSingleDice(diceRoll);
             menu.showPlayerTile(tileNumber);
@@ -246,11 +246,15 @@ public class Game {
                 personnage = new Mage(name);
                 personnage.equipDefensive(new Philtre());
                 personnage.equipWeapon(new Sort());
+                Database.updateCharacter("Hero", 1, "Mage", name, personnage.getMaxHp(), personnage.getAttack(),
+                        "Eclair de givre", "Philtre mineur");
             }
             case "guerrier" -> {
                 personnage = new Guerrier(name);
                 personnage.equipDefensive(new Bouclier());
                 personnage.equipWeapon(new Arme());
+                Database.updateCharacter("Hero", 1, "Guerrier", name, personnage.getMaxHp(), personnage.getAttack(),
+                        "Bouclier en bois", "Epée en bois");
             }
             default -> {
                 break;
@@ -288,7 +292,7 @@ public class Game {
         }
 
         Collections.shuffle(tableau);
-        tableau.set(0, new Vide());
+        tableau.set(1, new Vide());
     }
 
     /**
@@ -298,7 +302,7 @@ public class Game {
      * @param name   the encounter entity (e.g., an enemy or item)
      * @return the number of encounters inserted
      */
-    private int insertEncounter(int number, Case name) {
+    private int insertEncounter(int number, Interactable name) {
         for (int i = 0; i < number; i++) {
             tableau.add(name);
         }
@@ -311,7 +315,7 @@ public class Game {
      * 
      * @param tile the current tile the player is on
      */
-    private void checkForLose(Case tile) {
+    private void checkForLose(Interactable tile) {
         if (personnage.getNiveauDeVie() < 1) {
             menu.clearScreen();
             menu.printLose();

@@ -2,7 +2,7 @@ package cases;
 
 import personnages.Personnage;
 
-public class Vide implements Case {
+public class Vide implements Interactable {
     @Override
     public String printArt() {
         return """

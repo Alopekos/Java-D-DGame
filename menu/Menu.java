@@ -1,6 +1,6 @@
 package menu;
 
-import cases.Case;
+import cases.Interactable;
 import java.util.Scanner;
 import personnages.Personnage;
 
@@ -290,7 +290,7 @@ public class Menu {
      *
      * @param tableau the Case object representing the current tile to display.
      */
-    public void printTileEvent(Case tableau) {
+    public void printTileEvent(Interactable tableau) {
         System.out.println("\u001B[36m");
         System.out.println(tableau);
         System.out.println("\u001B[0m");

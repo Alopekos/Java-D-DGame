@@ -1,9 +1,9 @@
 package equipement.potion;
 
-import cases.Case;
+import cases.Interactable;
 import personnages.Personnage;
 
-public abstract class Potion implements Case {
+public abstract class Potion implements Interactable {
     private int hpRestore;
 
     protected Potion(int hpRestore) {
