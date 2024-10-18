@@ -49,9 +49,13 @@ public class Game {
             String menuChoice = menu.choseMenu();
 
             switch (menuChoice) {
-                case "1" -> this.mainScreenMenu();
+                case "1" -> this.mainScreenMenu(0);
                 case "2" -> {
-                    System.out.println("hey");
+                    setPersonnage();
+                    String saveChoice = menu.saveMenu(personnage.getName(), personnage.getClasse(),
+                            personnage.getAttack(),
+                            personnage.getMaxHp());
+                    choseSaveMenu(saveChoice);
                 }
                 case "3" -> menu.clearScreen();
                 default -> {
@@ -61,7 +65,7 @@ public class Game {
             }
         } catch (OutOfMenuException e) {
             System.out.println(e.getMessage());
-            mainScreenMenu();
+            mainScreenMenu(0);
         }
     }
 
@@ -72,12 +76,14 @@ public class Game {
      * 3. Start the game
      * 4. Quit the game
      */
-    public void mainScreenMenu() {
+    public void mainScreenMenu(int choseCharacter) {
         menu.clearScreen();
 
         boolean isMenuOver = false;
 
-        choseCharacter();
+        if (choseCharacter == 0) {
+            choseCharacter();
+        }
 
         while (!isMenuOver) {
 
@@ -203,7 +209,11 @@ public class Game {
 
             switch (restartOrClose) {
                 case "1" -> {
-                    choseCharacter();
+                    setPersonnage();
+                    String saveChoice = menu.saveMenu(personnage.getName(), personnage.getClasse(),
+                            personnage.getAttack(),
+                            personnage.getMaxHp());
+                    choseSaveMenu(saveChoice);
                     menu.clearScreen();
                     menu.printDices();
                     jouerUnTour(this.personnage);
@@ -246,14 +256,14 @@ public class Game {
                 personnage = new Mage(name);
                 personnage.equipDefensive(new Philtre());
                 personnage.equipWeapon(new Sort());
-                Database.updateCharacter("Hero", 1, "Mage", name, personnage.getMaxHp(), personnage.getAttack(),
+                Database.updateCharacter("Hero", 1, "mage", name, personnage.getMaxHp(), personnage.getAttack(),
                         "Eclair de givre", "Philtre mineur");
             }
             case "guerrier" -> {
                 personnage = new Guerrier(name);
                 personnage.equipDefensive(new Bouclier());
                 personnage.equipWeapon(new Arme());
-                Database.updateCharacter("Hero", 1, "Guerrier", name, personnage.getMaxHp(), personnage.getAttack(),
+                Database.updateCharacter("Hero", 1, "guerrier", name, personnage.getMaxHp(), personnage.getAttack(),
                         "Bouclier en bois", "Epée en bois");
             }
             default -> {
@@ -324,7 +334,11 @@ public class Game {
 
             switch (restartOrClose) {
                 case "1" -> {
-                    choseCharacter();
+                    setPersonnage();
+                    String saveChoice = menu.saveMenu(personnage.getName(), personnage.getClasse(),
+                            personnage.getAttack(),
+                            personnage.getMaxHp());
+                    choseSaveMenu(saveChoice);
                     menu.clearScreen();
                     menu.printDices();
                     jouerUnTour(this.personnage);
@@ -337,6 +351,51 @@ public class Game {
                     break;
                 }
             }
+        }
+    }
+
+    private Personnage setPersonnage() {
+        int[] intData = Database.getIntDataFromDB("Hero");
+        String[] stringData = Database.getStringDataFromDB("Hero");
+        System.out.println("Id: " + intData[0] + " - HP: " + intData[1] + " - ATK: "
+                + intData[2]);
+        System.out.println("Type: " + stringData[0] + " - Nom: " + stringData[1] +
+                " ArmeOuSort: " + stringData[2]
+                + " - Bouclier: " + stringData[3]);
+
+        switch (stringData[0]) {
+            case "mage":
+                personnage = new Mage(stringData[1]);
+                personnage.equipDefensive(new Philtre());
+                personnage.equipWeapon(new Sort());
+                break;
+            case "guerrier":
+                personnage = new Guerrier(stringData[1]);
+                personnage.equipDefensive(new Bouclier());
+                personnage.equipWeapon(new Arme());
+                break;
+            default:
+                break;
+        }
+        personnage.setName(stringData[1]);
+        personnage.setNiveauDeVie(intData[1]);
+        personnage.setMaxHp(intData[1]);
+        personnage.setForceDAttaque(intData[2]);
+
+        return personnage;
+    }
+
+    public void choseSaveMenu(String saveChoice) {
+        switch (saveChoice) {
+            case "1":
+                this.mainScreenMenu(1);
+                break;
+            case "2":
+                this.mainScreenMenu(0);
+                break;
+            default:
+                System.exit(0);
+                break;
         }
     }
 }

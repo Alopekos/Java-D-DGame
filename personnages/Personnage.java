@@ -84,20 +84,6 @@ public abstract class Personnage {
         this.niveauDeVie += defensive.getDefense();
     }
 
-    public String getTypeFromDB(String table) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + table, "root", "password");
-            System.out.println("Database connected");
-            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = st.executeQuery("select * from " + table);
-            rs.first();
-            return rs.getString(2);
-        } catch (Exception e) {
-            System.err.println("Something went wrong: " + e);
-        }
-        return "";
-    }
 
     @Override
     public String toString() {

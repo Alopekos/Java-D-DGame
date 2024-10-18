@@ -33,8 +33,22 @@ public class Menu {
         printDragon();
         System.out.println("\t\t========================================");
         System.out.println("\t\t||\u001B[35m 🎨  1-\u001B[0mCréer un personnage          ||");
-        System.out.println("\t\t||\u001B[35m ❌  2-\u001B[0mQuitter le jeu\u001B[0m               ||");
+        System.out.println("\t\t||\u001B[35m 💾  2-\u001B[0mChoisir une sauvegarde       ||");
+        System.out.println("\t\t||\u001B[35m ❌  3-\u001B[0mQuitter le jeu\u001B[0m               ||");
         System.out.println("\t\t========================================");
+
+        return scanner.next();
+
+    }
+
+    public String saveMenu(String name, String classe, int atk, int hp) {
+        clearScreen();
+        System.out.println("\t\t===================================================");
+        System.out.println("\t\t\u001B[35m 💾  1-\u001B[0m '" + name + "' - " + classe + " | HP: " + hp
+                + " - ATK: " + atk);
+        System.out.println("\t\t\u001B[35m 🎨  2-\u001B[0m Créer un nouveau joueur\u001B[0m");
+        System.out.println("\t\t\u001B[35m ❌  3-\u001B[0m Quitter le jeu\u001B[0m");
+        System.out.println("\t\t===================================================");
 
         return scanner.next();
 

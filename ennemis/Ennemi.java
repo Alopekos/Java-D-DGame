@@ -45,7 +45,6 @@ public abstract class Ennemi implements Interactable {
         Menu menu = new Menu();
         boolean isFightOver = false;
         while (!isFightOver) {
-            menu.clearScreen();
             System.out.println("\tUn " + this.name + " vous attaque !!!");
             System.out.println(printArt());
             String choice = menu.fightMenu();
