@@ -2,11 +2,6 @@ package personnages;
 
 import equipement.defense.EquipementDefensif;
 import equipement.offense.EquipementOffensif;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.math.*;
 
 public abstract class Personnage {
     private String name;
@@ -83,7 +78,6 @@ public abstract class Personnage {
         this.maxHp += defensive.getDefense();
         this.niveauDeVie += defensive.getDefense();
     }
-
 
     @Override
     public String toString() {
