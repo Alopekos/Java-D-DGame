@@ -1,4 +1,6 @@
-# Commande à lancer une fois dans _"/ITERATION2-D&D"_
+# Commande à lancer une fois dans _"/Java-D-DGame"_
+
+- Un jeu au tour par tour en Java (premier projet Java)
 
 ```sh
 clear && javac Main.java -d ./classes && cd "./classes" && java -cp "./mysql-connector-j-9.1.0.jar:." Main && cd ".."
